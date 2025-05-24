@@ -1,0 +1,92 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #0077cc;
+  margin-bottom: 1rem;
+}
+
+thead tr {
+    background-color: #0077cc;
+    color: white;
+    text-align: left;
+  }
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e0f0ff;
+    cursor: pointer;
+}
+
+caption {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+body {
+  padding: 20px;
+}
+
+table th,
+table td {
+  width: 25%; /* Adjust this based on how many columns you have */
+  text-align: left;
+}
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #0077cc;
+  margin-bottom: 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  border-bottom: 3px solid #0077cc;
+}
+
+.tab-button {
+  padding: 14px 60px;
+  margin-right: 5px;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  background-color: #0077cc;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+

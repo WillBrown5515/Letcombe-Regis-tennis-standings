@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<link rel="stylesheet" href="styles.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letcombe Tennis League</title>
+</head>
+<body>
+<div class="tabs">
+  <button class="tab-button active" data-tab="singles">Singles</button>
+  <button class="tab-button" data-tab="doubles">Doubles</button>
+</div>
+
+<div id="singles" class="tab-content active">
+  <h2>Singles Standings</h2>
+  <table id="singlesTable"></table>
+</div>
+
+<div id="doubles" class="tab-content">
+  <h2>Doubles Standings</h2>
+  <table id="doublesTable"></table>
+</div>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
