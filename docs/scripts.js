@@ -1,7 +1,18 @@
 const supaclient = supabase.createClient('https://rwkgoeawxetqkxpdxbqa.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3a2dvZWF3eGV0cWt4cGR4YnFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzkwODUsImV4cCI6MjA2MzY1NTA4NX0.u-WnVLnLoEiI9FKg-epzkdD1WiY0fhoQgk6_Oyovu8Y')
 
+function sortLeagueData(rows) {
+  return rows.sort((a, b) => {
+    // Sort by points DESC
+    if (b.points !== a.points) {
+      return b.points - a.points;
+    }
+
+    // If points are equal, sort by games_played ASC
+    return a.games_played - b.games_played;
+  });
+}
+
 async function loadLeagueTables() {
-  // Fetch singles rows
   const { data: singles, error: singlesError } = await supaclient
     .from('league_table')
     .select('*')
@@ -12,7 +23,6 @@ async function loadLeagueTables() {
     return;
   }
 
-  // Fetch doubles rows
   const { data: doubles, error: doublesError } = await supaclient
     .from('league_table')
     .select('*')
@@ -23,9 +33,12 @@ async function loadLeagueTables() {
     return;
   }
 
-  // Render tables
-  renderTable('singlesTable', singles);
-  renderTable('doublesTable', doubles);
+  // Sort the data before rendering
+  const sortedSingles = sortLeagueData(singles);
+  const sortedDoubles = sortLeagueData(doubles);
+
+  renderTable('singlesTable', sortedSingles);
+  renderTable('doublesTable', sortedDoubles);
 }
 
 function renderTable(tableId, rows) {
