@@ -1,4 +1,4 @@
-const supaclient = supabase.createClient('https://rwkgoeawxetqkxpdxbqa.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3a2dvZWF3eGV0cWt4cGR4YnFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzkwODUsImV4cCI6MjA2MzY1NTA4NX0.u-WnVLnLoEiI9FKg-epzkdD1WiY0fhoQgk6_Oyovu8Y')
+const supaclient = supabase.createClient('https://ajorqmlvqftlwwaazwzz.supabase.co/', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqb3JxbWx2cWZ0bHd3YWF6d3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxNjkwNDEsImV4cCI6MjA2Mzc0NTA0MX0.pNO94ebWIq1uCKw5eYgcvMfqFM4Om-Dvv6BvGYJtWbs')
 
 function sortLeagueData(rows) {
   return rows.sort((a, b) => {
