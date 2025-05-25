@@ -27,6 +27,7 @@ async function loadLeagueTables() {
   renderTable('singlesTable', singles);
   renderTable('doublesTable', doubles);
 }
+
 function renderTable(tableId, rows) {
   const table = document.getElementById(tableId);
   if (!table) {
@@ -44,32 +45,47 @@ function renderTable(tableId, rows) {
   // Remove 'league' from headers
   const headers = Object.keys(rows[0]).filter(h => h !== 'league');
 
-  // 🔽 Sort rows by 'points' descending
-  rows.sort((a, b) => b.points - a.points);
-
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
-  headers.forEach((header) => {
+
+  headers.forEach((header, index) => {
     const th = document.createElement('th');
     th.textContent = header.replace('_', ' ').toUpperCase();
+
+    // Set widths: first column 50%, others 25%
+    if (index === 0) {
+      th.style.width = '50%';
+    } else {
+      th.style.width = '25%';
+    }
+
     headerRow.appendChild(th);
   });
+
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
   const tbody = document.createElement('tbody');
   rows.forEach((row) => {
     const tr = document.createElement('tr');
-    headers.forEach((header) => {
+    headers.forEach((header, index) => {
       const td = document.createElement('td');
       td.textContent = row[header];
+
+      // Apply same widths to table data cells
+      if (index === 0) {
+        td.style.width = '50%';
+      } else {
+        td.style.width = '25%';
+      }
+
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
   });
+
   table.appendChild(tbody);
 }
-
 
 // Call load function once the page loads
 window.addEventListener('DOMContentLoaded', () => {
