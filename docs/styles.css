@@ -90,3 +90,10 @@ h1 {
   display: block;
 }
 
+.updated-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: #333;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}

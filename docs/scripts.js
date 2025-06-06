@@ -33,12 +33,35 @@ async function loadLeagueTables() {
     return;
   }
 
+    // Fetch the single "Updated" row
+  const { data: updatedRows, error: updatedError } = await supaclient
+    .from('league_table')
+    .select('name')
+    .eq('league', 'Updated')
+    .limit(1);
+
+  if (updatedError) {
+    console.error('Error fetching updated date:', updatedError);
+    return;
+  }
+
+  const updatedDate = updatedRows?.[0]?.name || '';
+
+  // Filter out any 'Updated' rows if present in singles/doubles
+  const singlesData = singles.filter(row => row.type !== 'Updated');
+  const doublesData = doubles.filter(row => row.type !== 'Updated');
   // Sort the data before rendering
   const sortedSingles = sortLeagueData(singles);
   const sortedDoubles = sortLeagueData(doubles);
 
   renderTable('singlesTable', sortedSingles);
   renderTable('doublesTable', sortedDoubles);
+
+    // Display the same update date for both tables
+  if (updatedDate) {
+    document.getElementById('singlesUpdated').textContent = `Last updated: ${updatedDate}`;
+    document.getElementById('doublesUpdated').textContent = `Last updated: ${updatedDate}`;
+  }
 }
 
 function renderTable(tableId, rows) {
@@ -63,7 +86,11 @@ function renderTable(tableId, rows) {
 
   headers.forEach((header, index) => {
     const th = document.createElement('th');
-    th.textContent = header.replace('_', ' ').toUpperCase();
+    let label = header.replace('_', ' ');
+    if (label.toLowerCase() === 'games played') {
+      label = 'Matches Played';
+    }
+    th.textContent = label.charAt(0).toUpperCase() + label.slice(1);
 
     // Set widths: first column 50%, others 25%
     if (index === 0) {
